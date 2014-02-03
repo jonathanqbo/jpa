@@ -30,7 +30,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * <b>  </b>
+ * <b> </b>
  *
  * <p> </p>
  *

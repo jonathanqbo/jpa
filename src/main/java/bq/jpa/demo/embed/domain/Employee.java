@@ -37,9 +37,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 
 /**
- * <b>  </b>
+ * <b> show how to use Embeddable Object in entity </b>
  *
- * <p> </p>
+ * <p> 
+ * <li> 1) single object
+ * <li> 2) collection object and override of attribute
+ *  </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *

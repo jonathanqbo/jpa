@@ -34,7 +34,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 /**
- * <b>  </b>
+ * <b> bidirection manytomany relationship </b>
  *
  * <p> </p>
  *

@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * <b>  </b>
+ * <b> serializable object used in entity </b>
  *
  * <p> </p>
  *

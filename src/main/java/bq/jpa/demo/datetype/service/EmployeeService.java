@@ -54,9 +54,9 @@ import bq.jpa.demo.datetype.domain.Employee;
 import bq.jpa.demo.datetype.domain.EmployeeType;
 
 /**
- * <b>  </b>
+ * <b> service </b>
  *
- * <p> </p>
+ * <p> just for test </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *

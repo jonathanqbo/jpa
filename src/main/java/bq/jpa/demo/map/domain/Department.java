@@ -35,9 +35,9 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 
 /**
- * <b>  </b>
+ * <b> show usage of map relation </b>
  *
- * <p> </p>
+ * <p> construct map from onetomany relationship </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *

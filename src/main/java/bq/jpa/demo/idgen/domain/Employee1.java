@@ -30,7 +30,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * <b>  </b>
+ * <b> default is auto </b>
  *
  * <p> </p>
  *

@@ -32,7 +32,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
- * <b>  </b>
+ * <b> by hibernate UUID </b>
  *
  * <p> </p>
  *

@@ -31,7 +31,7 @@ import javax.persistence.Persistence;
 import bq.jpa.demo.basic1.domain.Account;
 
 /**
- * <b>  </b>
+ * <b> show how to use entitymanager in a single application </b>
  *
  * <p> </p>
  *

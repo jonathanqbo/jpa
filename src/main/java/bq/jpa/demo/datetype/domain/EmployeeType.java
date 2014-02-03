@@ -25,7 +25,7 @@ SOFTWARE.
 package bq.jpa.demo.datetype.domain;
 
 /**
- * <b>  </b>
+ * <b> enum type used in entity </b>
  *
  * <p> </p>
  *

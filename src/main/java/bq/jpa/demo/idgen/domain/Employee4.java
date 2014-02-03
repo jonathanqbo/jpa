@@ -31,7 +31,7 @@ import javax.persistence.Id;
 import javax.persistence.TableGenerator;
 
 /**
- * <b>  </b>
+ * <b> by table </b>
  *
  * <p> </p>
  *

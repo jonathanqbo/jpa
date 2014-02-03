@@ -35,7 +35,7 @@ import bq.jpa.demo.basic2.dao.AccountDao;
 import bq.jpa.demo.basic1.domain.Account;
 
 /**
- * <b>  </b>
+ * <b> show how to use container entitymanger usage in spring </b>
  *
  * <p> </p>
  *

@@ -33,7 +33,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 /**
- * <b>  </b>
+ * <b> show the usage of onetomany relationship </b>
  *
  * <p> </p>
  *

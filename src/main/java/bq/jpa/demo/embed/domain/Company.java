@@ -33,9 +33,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * <b>  </b>
+ * <b> show the usage of Embeddable object in entity </b>
  *
- * <p> </p>
+ * <p> single embeddable object and attribute override</p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *

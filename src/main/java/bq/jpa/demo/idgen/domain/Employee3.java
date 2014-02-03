@@ -30,7 +30,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * <b>  </b>
+ * <b> by sequence </b>
  *
  * <p> Mysql don't support Sequence, Oracle dont support Identity</p>
  *

@@ -30,9 +30,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * <b>  </b>
+ * <b> identity </b>
  *
- * <p> </p>
+ * <p> mysql support this strategy </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *

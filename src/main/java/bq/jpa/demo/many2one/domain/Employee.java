@@ -32,9 +32,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
- * <b>  </b>
+ * <b> manytoone relationship, most common relation </b>
  *
- * <p> </p>
+ * <p> employee table has foreign key to department</p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *

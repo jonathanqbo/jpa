@@ -40,9 +40,13 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.MapKeyEnumerated;
 
 /**
- * <b>  </b>
+ * <b> show Map collection usage </b>
  *
- * <p> </p>
+ * <p> how to construct a map
+ * <li> map relations are stored in single table
+ * <li> map relations are onetomany relationship
+ * <li> can use enum as key of map
+ *  </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *

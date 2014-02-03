@@ -36,7 +36,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 /**
- * <b>  </b>
+ * <b> many2many by jointable </b>
  *
  * <p> </p>
  *

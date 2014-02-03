@@ -34,7 +34,7 @@ import bq.jpa.demo.basic1.domain.Account;
 import bq.jpa.demo.basic2.service.AccountService;
 
 /**
- * <b>  </b>
+ * <b> show standard n-tie construct using spring and jpa</b>
  *
  * <p> </p>
  *

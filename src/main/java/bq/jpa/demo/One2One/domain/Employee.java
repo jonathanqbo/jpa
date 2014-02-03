@@ -32,7 +32,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
- * <b>  </b>
+ * <b> show the usage of onetoone relationship </b>
  *
  * <p> </p>
  *

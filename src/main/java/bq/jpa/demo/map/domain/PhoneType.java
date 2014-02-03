@@ -25,7 +25,7 @@ SOFTWARE.
 package bq.jpa.demo.map.domain;
 
 /**
- * <b>  </b>
+ * <b> enum used in employee as key of map </b>
  *
  * <p> </p>
  *
