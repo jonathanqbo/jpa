@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.query.service;
+package bq.jpa.demo.query.domain;
 
 import java.util.List;
 

@@ -22,22 +22,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.query.namedquery.service;
-
-import java.util.List;
+package bq.jpa.demo.metadata.service;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.metamodel.Attribute;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import bq.jpa.demo.query.domain.Employee;
-import bq.jpa.demo.query.domain.ResultViewer;
 
 /**
  * <b>  </b>
@@ -46,33 +41,21 @@ import bq.jpa.demo.query.domain.ResultViewer;
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Feb 11, 2014 9:39:54 PM
- * 
- * @see Employee
+ * Created at Feb 13, 2014 11:19:54 PM
  *
  */
 @Service
-public class NamedQueryService {
+public class MetadataService {
 
 	@PersistenceContext
 	private EntityManager em;
 	
-	@Transactional
-	public void doNamedNativeQuery(){
-		// this namedquery defined in Employee entity
-		List result = em.createNamedQuery("jpa_query_namednative_employee")
-		.setParameter(1, 1500)
-		.getResultList();
-		
-		ResultViewer.showResult(result, "@NamedNativeQuery(name=jpa_query_native_employee");
+	public void doMD(){
+		Metamodel md = em.getMetamodel();
+		EntityType<Employee> employee = md.entity(Employee.class);
+		for(Attribute<? super Employee, ?> attr : employee.getAttributes()){
+			System.out.println(attr.getName() + " | " + attr.getJavaType().getName() + " | " + attr.getPersistentAttributeType());
+		}
 	}
 	
-	@Transactional
-	public void doNamedQuery(){
-		List<Employee> result = em.createNamedQuery("jpa_query_named_employee", Employee.class)
-		.setParameter(1, 1500)
-		.getResultList();
-		
-		ResultViewer.showResult(result, "@NamedQuery(name=jpa_query_named_employee");
-	}
 }
