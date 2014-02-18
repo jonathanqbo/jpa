@@ -22,48 +22,42 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lifecycle.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
+import javax.persistence.PreUpdate;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
  * <p> </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 17, 2014 7:59:47 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
+public class EmployeeDebugListener {
 
-	@GenericGenerator(name="uuidgen",strategy="uuid")
-	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
-	
-	private String name;
-
-	public String getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	@PrePersist
+	public void prePersist(Employee emp){
+		System.out.println(EmployeeDebugListener.class.getName() + " prePersist");
 	}
 	
+	@PreUpdate
+	public void preUpdate(Employee emp){
+		System.out.println(EmployeeDebugListener.class.getName() + " preUpdate");
+	}
+	
+	@PreRemove
+	public void preRemove(Employee emp){
+		System.out.println(EmployeeDebugListener.class.getName() + " preRemove");
+	}
+	
+	@PostLoad
+	public void postLoad(Employee emp){
+		System.out.println(EmployeeDebugListener.class.getName() + " postLoad");
+	}
 }

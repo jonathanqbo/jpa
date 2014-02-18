@@ -66,11 +66,6 @@ public class VersionTester {
 		service.doUpdateAddress();
 		service.showResult();
 		
-		System.out.println("---- modify salary while do statistic ----");
-		service.doCurrentReadAndWrite();
 	}
-	
-	
-	
 	
 }

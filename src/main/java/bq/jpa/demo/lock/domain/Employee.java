@@ -22,40 +22,45 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lock.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Version;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
- * <p> </p>
+ * <p> Must have Version attribute, because OPTIMISTIC not supported for non-versioned entities</p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 16, 2014 9:14:59 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
+@Entity(name="jpa_lock_employee")
+public class Employee {
 
-	@GenericGenerator(name="uuidgen",strategy="uuid")
 	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
+	@GeneratedValue
+	@Column(name="pk_employee")
+	private int id;
 	
 	private String name;
+	
+	private float salary;
+	
+	@Version
+	private int version;
 
-	public String getEmployeeId() {
-		return employeeId;
+	public int getId() {
+		return id;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -64,6 +69,22 @@ public class Employee5 {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public float getSalary() {
+		return salary;
+	}
+
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	
 }

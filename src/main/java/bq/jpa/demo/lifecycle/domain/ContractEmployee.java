@@ -22,48 +22,58 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lifecycle.domain;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.EntityListeners;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
  * <p> </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 10, 2014 9:18:29 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
+@Entity(name="jpa_lifecycle_contract")
+@DiscriminatorValue("contract")
+@EntityListeners(ContractEmployeeListener.class)
+public class ContractEmployee extends Employee{
 
-	@GenericGenerator(name="uuidgen",strategy="uuid")
-	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
+	private int dailyRate;
 	
-	private String name;
+	private int term;
+	
+	@PrePersist
+	public void prePersit(){
+		System.out.println(ContractEmployee.class.getName() + " prePersist");
+	}
+	
 
-	public String getEmployeeId() {
-		return employeeId;
+	@PostPersist
+	public void postPersist(){
+		System.out.println(ContractEmployee.class.getName() + " postPersist");
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public int getDailyRate() {
+		return dailyRate;
 	}
 
-	public String getName() {
-		return name;
+	public void setDailyRate(int dailyRate) {
+		this.dailyRate = dailyRate;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public int getTerm() {
+		return term;
+	}
+
+	public void setTerm(int term) {
+		this.term = term;
 	}
 	
 }

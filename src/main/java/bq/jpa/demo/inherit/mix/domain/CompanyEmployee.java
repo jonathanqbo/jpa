@@ -24,7 +24,6 @@ SOFTWARE.
 
 package bq.jpa.demo.inherit.mix.domain;
 
-import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;

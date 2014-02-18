@@ -22,48 +22,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lifecycle.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
  * <p> </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 17, 2014 7:59:11 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
-
-	@GenericGenerator(name="uuidgen",strategy="uuid")
-	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
+public class CompanyEmployeeListener {
 	
-	private String name;
-
-	public String getEmployeeId() {
-		return employeeId;
+	@PrePersist
+	public void prePersist(CompanyEmployee emp){
+		System.out.println(CompanyEmployeeListener.class.getName() + " prePersist");
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	@PostPersist
+	public void postPersist(CompanyEmployee emp){
+		System.out.println(CompanyEmployeeListener.class.getName() + " postPersist");
 	}
 	
 }

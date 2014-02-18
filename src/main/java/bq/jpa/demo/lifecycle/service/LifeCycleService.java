@@ -22,48 +22,48 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lifecycle.service;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import bq.jpa.demo.lifecycle.domain.ContractEmployee;
+import bq.jpa.demo.lifecycle.domain.PartTimeEmployee;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
  * <p> </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 17, 2014 8:23:53 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
+@Service
+public class LifeCycleService {
 
-	@GenericGenerator(name="uuidgen",strategy="uuid")
-	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
+	@PersistenceContext
+	private EntityManager em;
 	
-	private String name;
-
-	public String getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	@Transactional
+	public void doPersistParttimeEmployee(){
+		PartTimeEmployee emp = new PartTimeEmployee();
+		emp.setName("parttimeemployee_88");
+		emp.setVacation(100);
+		emp.setHourlyRate(88f);
+		em.persist(emp);
 	}
 	
+	@Transactional
+	public void doPersistContractEmployee(){
+		ContractEmployee emp = new ContractEmployee();
+		emp.setName("contractemployee_88");
+		emp.setTerm(100);
+		emp.setDailyRate(88);
+		em.persist(emp);
+	}
 }

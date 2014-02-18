@@ -22,48 +22,45 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lifecycle.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
  * <p> </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 10, 2014 9:18:40 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
+@MappedSuperclass
+@EntityListeners(CompanyEmployeeListener.class)
+public abstract class CompanyEmployee extends Employee{
 
-	@GenericGenerator(name="uuidgen",strategy="uuid")
-	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
+	private int vacation;
 	
-	private String name;
-
-	public String getEmployeeId() {
-		return employeeId;
+	@PrePersist
+	public void prePersist(){
+		System.out.println(CompanyEmployee.class.getName() + " prePersist");
+	}
+	
+	@PostPersist
+	public void postPersist(){
+		System.out.println(CompanyEmployee.class.getName() + " postPersist");
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public int getVacation() {
+		return vacation;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+	public void setVacation(int vacation) {
+		this.vacation = vacation;
 	}
 	
 }

@@ -26,9 +26,6 @@ package bq.jpa.demo.version.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -57,17 +54,6 @@ public class VersionService {
 
 	@PersistenceContext
 	private EntityManager em;
-	
-	private Lock lock = null;
-	private boolean isStatisticStarted = false;
-	private Condition dostatisticThread = null;
-	private Condition updateSalaryThread = null;
-	
-	public VersionService(){
-		this.lock = new ReentrantLock();
-		dostatisticThread = lock.newCondition();
-		updateSalaryThread = lock.newCondition();
-	}
 	
 	@Transactional
 	public void doCreate(){
@@ -116,7 +102,7 @@ public class VersionService {
 	}
 	
 	/**
-	 * batch way need change version by itself
+	 * batch way need change version by ourselves
 	 */
 	@Transactional
 	public void doUpdateVersionByQL(){
@@ -136,120 +122,6 @@ public class VersionService {
 			address.setState("MI");
 			address.setCity("Lansing");
 		}
-	}
-	
-	/**
-	 * Statistic
-	 */
-	@Transactional
-	public void doStatisticSalary(){
-		try{
-			lock.lock();
-			isStatisticStarted = true;
-	
-			TypedQuery<Employee> query = em.createQuery("SELECT e FROM jpa_version_employee e", Employee.class);
-			List<Employee> results = query.getResultList();
-			
-			float totalSalary = 0f;
-			int i = 0;
-			for(Employee employee : results){
-				
-				// In the process of statistic, modify salary
-				if(i == results.size()/2){
-					dostatisticThread.await();
-					updateSalaryThread.signal();
-				}
-				
-				
-				totalSalary += employee.getSalary();
-				i++;
-
-				System.out.println("do total : " + employee.getName() + " | " + employee.getSalary());
-				System.out.println("now total : " + totalSalary);
-			}
-			
-			System.out.println("total salary is :" + totalSalary);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		finally{
-			lock.unlock();
-		}
-	}
-	
-	/**
-	 * modify employees salary
-	 */
-	@Transactional
-	public void doUpdateSalary(){
-		try{
-			lock.lock();
-			if(!isStatisticStarted){
-				updateSalaryThread.await();
-				dostatisticThread.signal();
-			}
-			
-			Query update = em.createQuery("UPDATE jpa_version_employee e SET e.salary=e.salary+100");
-			update.executeUpdate();
-			
-			System.out.println("modify employee salary!");
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		finally{
-			dostatisticThread.signal();
-			lock.unlock();
-		}
-	}
-	
-	/**
-	 * modify salary while do statistic, lead to error statistic result.
-	 * resolve this problem: add lock
-	 */
-	public void doCurrentReadAndWrite(){
-		Thread thread1 = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				doStatisticSalary();
-			}
-		});
-		Thread thread2 = new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				doUpdateSalary();
-			}
-		});
-
-		try {
-			thread2.start();
-			Thread.sleep(1000);
-			thread1.start();
-		} catch (InterruptedException e1) {
-			e1.printStackTrace();
-		}
-		
-		try {
-			thread1.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-//		threadpool.submit(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				doStatisticSalary();
-//			}
-//		});
-//		threadpool.submit(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				doUpdateSalary();
-//			}
-//		});
-		
 	}
 	
 	@Transactional

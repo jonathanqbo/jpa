@@ -24,7 +24,6 @@ SOFTWARE.
 
 package bq.jpa.demo.inherit.single.domain;
 
-import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 
 /**

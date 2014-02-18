@@ -34,6 +34,8 @@ import bq.jpa.demo.datetype.DatetypeTester;
 import bq.jpa.demo.embed.EmbedTester;
 import bq.jpa.demo.idgen.IdgenTester;
 import bq.jpa.demo.inherit.InheritTest;
+import bq.jpa.demo.lifecycle.LifeCycleTester;
+import bq.jpa.demo.lock.LockTester;
 import bq.jpa.demo.many2many.Many2ManyTester;
 import bq.jpa.demo.many2one.Many2OneTester;
 import bq.jpa.demo.map.MapTester;
@@ -70,7 +72,9 @@ import bq.jpa.demo.version.VersionTester;
 	InheritTest.class,
 	QueryTester.class,
 	MetadataTester.class,
-	VersionTester.class
+	VersionTester.class,
+	LockTester.class,
+	LifeCycleTester.class
 })
 public class JpaTestSuite {
 

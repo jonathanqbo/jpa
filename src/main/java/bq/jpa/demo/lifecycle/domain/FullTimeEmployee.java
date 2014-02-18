@@ -22,48 +22,43 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lifecycle.domain;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
  * <p> </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 10, 2014 9:19:05 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
+@Entity(name="jpa_lifecycle_fulltime")
+@DiscriminatorValue("fulltime")
+public class FullTimeEmployee extends CompanyEmployee{
 
-	@GenericGenerator(name="uuidgen",strategy="uuid")
-	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
+	private long salary;
 	
-	private String name;
+	private long pension;
 
-	public String getEmployeeId() {
-		return employeeId;
+	public long getSalary() {
+		return salary;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setSalary(long salary) {
+		this.salary = salary;
 	}
 
-	public String getName() {
-		return name;
+	public long getPension() {
+		return pension;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPension(long pension) {
+		this.pension = pension;
 	}
 	
 }

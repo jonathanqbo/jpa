@@ -22,40 +22,66 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package bq.jpa.demo.idgen.domain;
+package bq.jpa.demo.lifecycle.domain;
 
+import java.sql.Date;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
 
 /**
- * <b> by hibernate UUID </b>
+ * <b>  </b>
  *
  * <p> </p>
  *
  * @author Jonathan Q. Bo (jonathan.q.bo@gmail.com)
  *
- * Created at Jan 30, 2014 3:44:13 PM
+ * Created at Feb 10, 2014 9:17:41 PM
  *
  */
-@Entity(name="jpa_idgen_employee_uuid")
-public class Employee5 {
+@Entity(name="jpa_lifecycle_employee")
+@Inheritance(strategy=InheritanceType.JOINED)
+@DiscriminatorColumn(name="emp_type", discriminatorType=DiscriminatorType.STRING)
+@EntityListeners({EmployeeListener.class, EmployeeDebugListener.class})
+public abstract class Employee implements NamedEntity{
 
-	@GenericGenerator(name="uuidgen",strategy="uuid")
 	@Id
-	@GeneratedValue(generator="uuidgen")
-	private String employeeId;
+	@GeneratedValue
+	@Column(name="pk_employee")
+	private int Id;
 	
 	private String name;
+	
+	private Date startDate;
 
-	public String getEmployeeId() {
-		return employeeId;
+	@PrePersist
+	public void prePersist(){
+		System.out.println(Employee.class.getName() + " prePersist");
+	}
+	
+	/**
+	 * NOTE: if this method name is same in child class, this method will not be invoke.
+	 */
+	@PostPersist
+	public void postPersistEmployee(){
+		System.out.println(Employee.class.getName() + " postPersist");
+	}
+	
+	public int getId() {
+		return Id;
 	}
 
-	public void setEmployeeId(String employeeId) {
-		this.employeeId = employeeId;
+	public void setId(int id) {
+		Id = id;
 	}
 
 	public String getName() {
@@ -64,6 +90,14 @@ public class Employee5 {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
 	
 }
